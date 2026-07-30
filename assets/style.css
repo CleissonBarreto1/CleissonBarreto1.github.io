@@ -244,9 +244,13 @@ p { margin: 0 0 16px; color: var(--graphite-600); }
 .sobre__inner { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: center; }
 .sobre__frame {
   aspect-ratio: 4/5;
+  width: 100%;
   border-radius: var(--radius);
   background: linear-gradient(160deg, var(--navy-800), var(--navy-900));
   border: 1px solid var(--border);
+  object-fit: cover;
+  object-position: top center;
+  box-shadow: var(--shadow-md);
 }
 .sobre__list li {
   padding: 10px 0 10px 28px;
