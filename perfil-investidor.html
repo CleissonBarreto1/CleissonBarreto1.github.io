@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qual é o seu Perfil de Investidor? | Suno</title>
+<meta name="description" content="Responda 6 perguntas rápidas e descubra se o seu perfil é conservador, moderado ou arrojado. Um material Suno Research.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/perfil.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header__inner">
+    <span class="brand-mark">(&nbsp;<span class="brand-mark__word">SUNO</span>&nbsp;)</span>
+    <span class="header__tag">Perfil de Investidor</span>
+  </div>
+</header>
+
+<main class="quiz-shell">
+  <div class="quiz-main">
+    <div class="quiz-wrap">
+
+      <!-- INTRO -->
+      <section class="screen is-active" id="screen-intro">
+        <div class="quiz-card">
+          <p class="eyebrow">Teste gratuito · leva 2 minutos</p>
+          <h1>Qual é o seu perfil de investidor?</h1>
+          <p>
+            Responda algumas perguntas rápidas sobre seus objetivos, prazos e reação a riscos.
+            No final, você descobre se o seu perfil é conservador, moderado ou arrojado —
+            e qual caminho faz mais sentido para os seus investimentos.
+          </p>
+          <div class="quiz-actions quiz-actions--center">
+            <button type="button" class="btn btn--primary" id="btn-start">Começar teste</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="screen" id="screen-quiz">
+        <p class="quiz-progress-label" id="progress-label">Pergunta 1 de 6</p>
+        <div class="quiz-progress"><div class="quiz-progress__bar" id="progress-bar"></div></div>
+        <div class="quiz-card" id="question-container"></div>
+        <div class="quiz-actions">
+          <button type="button" class="btn btn--outline" id="btn-back">Voltar</button>
+          <button type="button" class="btn btn--primary" id="btn-next" disabled>Próxima</button>
+        </div>
+      </section>
+
+      <!-- LEAD FORM -->
+      <section class="screen" id="screen-lead">
+        <div class="quiz-card">
+          <p class="eyebrow">Quase lá</p>
+          <h2>Para onde enviamos o seu resultado?</h2>
+          <p>Preencha seus dados para ver agora o seu perfil de investidor completo.</p>
+          <form id="lead-form" novalidate>
+            <div class="field">
+              <label for="lead-name">Nome</label>
+              <input type="text" id="lead-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="lead-email">E-mail</label>
+              <input type="email" id="lead-email" name="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="lead-phone">WhatsApp</label>
+              <input type="tel" id="lead-phone" name="phone" autocomplete="tel" placeholder="(DDD) 00000-0000" required>
+            </div>
+            <label class="consent">
+              <input type="checkbox" id="lead-consent" name="consent" required>
+              <span>Concordo em receber contato da Suno sobre conteúdos e produtos. Seus dados não são compartilhados com terceiros.</span>
+            </label>
+            <p class="field-error" id="lead-error" hidden></p>
+            <div class="quiz-actions">
+              <button type="button" class="btn btn--outline" id="btn-lead-back">Voltar</button>
+              <button type="submit" class="btn btn--primary" id="btn-lead-submit">Ver meu resultado</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- RESULT -->
+      <section class="screen" id="screen-result">
+        <div class="quiz-card">
+          <span class="result-badge" id="result-badge">Perfil</span>
+          <h2 id="result-name">—</h2>
+          <p id="result-description"></p>
+          <ul class="result-traits" id="result-traits"></ul>
+          <div class="callout">
+            <p id="result-recommendation"></p>
+          </div>
+          <div class="result-actions">
+            <a href="https://wa.me/5511920447843" class="btn btn--primary" id="result-cta-primary" target="_blank" rel="noopener">Falar com um assessor Suno</a>
+          </div>
+          <p class="result-reset"><a href="#" id="btn-restart">Refazer o teste</a></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer__copy">( SUNO ) · © <span id="year"></span> Suno Research. Conteúdo educacional, não constitui recomendação de investimento.</p>
+  </div>
+</footer>
+
+<script src="assets/perfil.js"></script>
+</body>
+</html>
