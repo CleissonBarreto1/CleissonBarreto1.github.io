@@ -11,6 +11,7 @@ const GOOGLE_FORM_FIELDS = {
   email: 'entry.116340326',
   phone: 'entry.1752510174',
   profile: 'entry.204745964',
+  answersSummary: 'entry.2119210900',
 };
 
 const QUESTIONS = [
@@ -83,8 +84,8 @@ const PROFILES = {
     recommendation:
       'Para o seu perfil, o ideal é começar com conteúdo que traga clareza e segurança nas suas decisões, antes de aumentar a exposição a risco.',
   },
-  moderado: {
-    name: 'Moderado',
+  dinamico: {
+    name: 'Dinâmico',
     description:
       'Você busca equilíbrio entre segurança e crescimento. Tolera algumas oscilações no curto prazo em troca de um retorno melhor no médio e longo prazo.',
     traits: [
@@ -95,8 +96,8 @@ const PROFILES = {
     recommendation:
       'Para o seu perfil, acompanhar análises e teses com constância faz muita diferença para equilibrar a carteira com confiança.',
   },
-  arrojado: {
-    name: 'Arrojado',
+  sofisticado: {
+    name: 'Sofisticado',
     description:
       'Você busca maximizar retornos no longo prazo e tolera bem a volatilidade. Enxerga quedas de mercado como parte do processo, não como motivo para sair da posição.',
     traits: [
@@ -177,8 +178,16 @@ function renderQuestion() {
 function getProfileKey() {
   const total = state.answers.reduce((sum, value) => sum + (value || 0), 0);
   if (total <= 11) return 'conservador';
-  if (total <= 18) return 'moderado';
-  return 'arrojado';
+  if (total <= 18) return 'dinamico';
+  return 'sofisticado';
+}
+
+function buildAnswersSummary() {
+  return QUESTIONS.map((question, index) => {
+    const chosenValue = state.answers[index];
+    const chosenOption = question.options.find((opt) => opt.value === chosenValue);
+    return `${index + 1}. ${question.text} → ${chosenOption ? chosenOption.label : '(sem resposta)'}`;
+  }).join('\n');
 }
 
 function renderResult() {
@@ -211,6 +220,7 @@ async function submitLead(payload) {
     body.append(GOOGLE_FORM_FIELDS.email, payload.email);
     body.append(GOOGLE_FORM_FIELDS.phone, payload.phone);
     body.append(GOOGLE_FORM_FIELDS.profile, payload.profile);
+    body.append(GOOGLE_FORM_FIELDS.answersSummary, payload.answersSummary);
 
     // mode: 'no-cors' é obrigatório para o Google Forms aceitar o POST, mas
     // isso também significa que não dá pra ler a resposta nem confirmar
@@ -293,6 +303,7 @@ document.getElementById('lead-form').addEventListener('submit', async (e) => {
     phone,
     profile: PROFILES[profileKey].name,
     answers: state.answers,
+    answersSummary: buildAnswersSummary(),
     date: new Date().toISOString(),
   });
 
