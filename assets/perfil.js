@@ -72,42 +72,9 @@ const QUESTIONS = [
 ];
 
 const PROFILES = {
-  conservador: {
-    name: 'Conservador',
-    description:
-      'Você prioriza segurança e previsibilidade. Prefere evitar oscilações bruscas no patrimônio, mesmo que isso signifique abrir mão de parte da rentabilidade.',
-    traits: [
-      'Baixa tolerância a perdas de curto prazo',
-      'Prioriza liquidez e previsibilidade',
-      'Prefere renda fixa como base da carteira',
-    ],
-    recommendation:
-      'Para o seu perfil, o ideal é começar com conteúdo que traga clareza e segurança nas suas decisões, antes de aumentar a exposição a risco.',
-  },
-  dinamico: {
-    name: 'Dinâmico',
-    description:
-      'Você busca equilíbrio entre segurança e crescimento. Tolera algumas oscilações no curto prazo em troca de um retorno melhor no médio e longo prazo.',
-    traits: [
-      'Tolerância moderada a oscilações',
-      'Busca equilíbrio entre renda fixa e renda variável',
-      'Pensa em prazos de médio a longo prazo',
-    ],
-    recommendation:
-      'Para o seu perfil, acompanhar análises e teses com constância faz muita diferença para equilibrar a carteira com confiança.',
-  },
-  sofisticado: {
-    name: 'Sofisticado',
-    description:
-      'Você busca maximizar retornos no longo prazo e tolera bem a volatilidade. Enxerga quedas de mercado como parte do processo, não como motivo para sair da posição.',
-    traits: [
-      'Alta tolerância a oscilações e volatilidade',
-      'Foco em potencial de retorno no longo prazo',
-      'Maior exposição a renda variável',
-    ],
-    recommendation:
-      'Para o seu perfil, um acompanhamento próximo ajuda a estruturar a estratégia e aproveitar oportunidades com mais consistência.',
-  },
+  conservador: { name: 'Conservador' },
+  dinamico: { name: 'Dinâmico' },
+  sofisticado: { name: 'Sofisticado' },
 };
 
 // Contato comercial Suno (Breno Ravani) via WhatsApp.
@@ -192,14 +159,6 @@ function buildAnswersSummary() {
 
 function renderResult() {
   const profile = PROFILES[getProfileKey()];
-  document.getElementById('result-badge').textContent = `Perfil ${profile.name}`;
-  document.getElementById('result-name').textContent = profile.name;
-  document.getElementById('result-description').textContent = profile.description;
-  document.getElementById('result-recommendation').textContent = profile.recommendation;
-
-  const traitsList = document.getElementById('result-traits');
-  traitsList.innerHTML = profile.traits.map((trait) => `<li>${trait}</li>`).join('');
-
   document.getElementById('result-cta-primary').href = buildWhatsappHref(profile.name);
 }
 

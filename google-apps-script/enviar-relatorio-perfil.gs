@@ -93,12 +93,30 @@ function pegarValor(namedValues, chaveBase) {
   return '';
 }
 
+var MAPA_ACENTOS = {
+  'a': 'aàáâãä',
+  'e': 'eèéêë',
+  'i': 'iìíîï',
+  'o': 'oòóôõö',
+  'u': 'uùúûü',
+  'c': 'cç',
+};
+
 function normalizarChavePerfil(perfilTexto) {
-  return String(perfilTexto)
-    .trim()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, ''); // remove acentos: "Dinâmico" -> "dinamico"
+  var texto = String(perfilTexto).trim().toLowerCase();
+  var resultado = '';
+  for (var i = 0; i < texto.length; i++) {
+    var ch = texto.charAt(i);
+    var substituto = ch;
+    for (var letraBase in MAPA_ACENTOS) {
+      if (MAPA_ACENTOS[letraBase].indexOf(ch) !== -1) {
+        substituto = letraBase;
+        break;
+      }
+    }
+    resultado += substituto;
+  }
+  return resultado;
 }
 
 function montarEmailHtml(nome, alocacao, respostas) {
